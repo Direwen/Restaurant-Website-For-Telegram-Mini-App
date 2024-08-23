@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dish Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+</head>
+<body class="bg-gray-100">
+
+    <!-- Container for dish details and reviews -->
+    <div class="container mx-auto px-4 py-8 flex flex-col sm:flex-row sm:gap-5 sm:py-0 sm:items-center">
+
+        <!-- Flex container for dish details and reviews -->
+        <div class="flex flex-col bg-white rounded-lg shadow-md overflow-hidden sm:h-full sm:w-6/12 md:4/12">
+            <!-- Dish Picture and Description -->
+            <div class="w-full max-h-60 overflow-hidden flex items-center justify-center">
+                <img 
+                    src="https://png.pngtree.com/png-clipart/20230531/original/pngtree-chicken-curry-png-image_9175078.png" 
+                    alt="Dish Picture" 
+                    class="w-full sm:w-9/12 object-cover"
+                >
+            </div>
+            <div class="p-4">
+                <h2 class="text-xl font-bold">#ID - Dish Name</h2>
+                <p class="text-gray-600 mt-2">
+                    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
+                </p>
+            </div>
+        </div>
+
+        <!-- Reviews Section -->
+        <div class="mt-8 bg-white shadow-md p-4 flex flex-col-reverse justify-between gap-4 sm:flex-col sm:shrink-0 sm:mt-0 sm:h-screen sm:grow sm:overflow-hidden">
+            <div class="flex-1 overflow-y-auto" style="max-height: 80%;">
+                <h3 class="text-2xl font-semibold mb-4">Reviews</h3>
+                <div class="space-y-4">
+
+                    <!-- Review Item -->
+                    <div class="bg-gray-100 p-4 rounded-lg shadow">
+                        <div>
+                            <p class="font-semibold">Username</p>
+                            <p class="text-gray-700">short review comment</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-100 p-4 rounded-lg shadow">
+                        <div>
+                            <div>
+                                <p class="font-semibold">Username</p>
+                                <p class="text-gray-700">
+                                    long review comment | long review comment | long review comment | long review comment
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-end space-x-2 text-sm">
+                            <button class="text-yellow-700 font-semibold hover:text-blue-700 active:" onclick="editReview(1)">
+                                <a href="#edit-indicator">Edit</a> <!-- Link to edit review -->
+                            </button>
+                            <button class="text-red-500 font-semibold hover:text-red-700">Delete</button> <!-- Button to delete review -->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Comment Input Box -->
+            <div class="shrink-0">
+                <!-- Highlight Indicator -->
+                <div id="edit-indicator" class="hidden bg-yellow-200 text-yellow-700 font-semibold p-2 rounded-t-lg flex justify-between items-center">
+                    <span>Editing</span> <!-- Indicates editing mode -->
+                    <button class="text-red-500" onclick="cancelEdit()">X</button> <!-- Button to cancel editing -->
+                </div>
+
+                <textarea 
+                    class="w-full p-2 border rounded-b-lg focus:outline-none focus:ring-1 focus:ring-gray-600 resize-none" 
+                    rows="5" 
+                    id="review-input" 
+                    placeholder="Say Something..."></textarea> <!-- Textarea for review input -->
+                <button class="w-full mt-2 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700" onclick="submitReview()">Submit</button> <!-- Button to submit review -->
+            </div>
+        </div>
+
+    </div>
+    
+
+    <script>
+        // Get the dish ID from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const dishId = urlParams.get('id'); // Fetch dish ID from URL
+    
+        // Fetch reviews based on the dish ID
+
+        // Function to simulate editing a review
+        function editReview(reviewId) {
+            // Simulate fetching review data
+            const reviewText = "This is an edited review comment."; // Example text
+            document.getElementById('review-input').value = reviewText; // Set textarea value
+            document.getElementById('edit-indicator').classList.remove('hidden'); // Show editing indicator
+        }
+
+        // Function to cancel editing
+        function cancelEdit() {
+            document.getElementById('review-input').value = ''; // Clear textarea
+            document.getElementById('edit-indicator').classList.add('hidden'); // Hide editing indicator
+        }
+    </script>
+
+</body>
+</html>
